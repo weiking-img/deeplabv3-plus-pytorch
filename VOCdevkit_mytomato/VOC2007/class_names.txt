@@ -1,0 +1,4 @@
+_background_
+fully_ripened
+half_ripened
+green

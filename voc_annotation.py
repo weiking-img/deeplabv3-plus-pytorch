@@ -24,7 +24,12 @@ if __name__ == "__main__":
     print("Generate txt in ImageSets.")
     segfilepath     = os.path.join(VOCdevkit_path, 'VOC2007/SegmentationClass')
     saveBasePath    = os.path.join(VOCdevkit_path, 'VOC2007/ImageSets/Segmentation')
-    
+
+    if not os.path.exists(segfilepath):
+        os.makedirs(segfilepath)
+    if not os.path.exists(saveBasePath):
+        os.makedirs(saveBasePath)
+
     temp_seg = os.listdir(segfilepath)
     total_seg = []
     for seg in temp_seg:
@@ -40,10 +45,24 @@ if __name__ == "__main__":
     
     print("train and val size",tv)
     print("traub suze",tr)
-    ftrainval   = open(os.path.join(saveBasePath,'trainval.txt'), 'w')  
-    ftest       = open(os.path.join(saveBasePath,'test.txt'), 'w')  
-    ftrain      = open(os.path.join(saveBasePath,'train.txt'), 'w')  
-    fval        = open(os.path.join(saveBasePath,'val.txt'), 'w')  
+
+    ftrainval_path = os.path.join(saveBasePath, 'trainval.txt')
+    ftest_path     = os.path.join(saveBasePath, 'test.txt')
+    ftrain_path    = os.path.join(saveBasePath, 'train.txt')
+    fval_path      = os.path.join(saveBasePath, 'val.txt')
+    # if not os.path.exists(ftrainval_path):
+    #     os.mkdir(ftrainval_path)
+    # if not os.path.exists(ftest_path):
+    #     os.mkdir(ftest_path)
+    # if not os.path.exists(ftrain_path):
+    #     os.mkdir(ftrain_path)
+    # if not os.path.exists(fval_path):
+    #     os.mkdir(fval_path)
+
+    ftrainval   = open(ftrainval_path, 'w')
+    ftest       = open(ftest_path, 'w')
+    ftrain      = open(ftrain_path, 'w')
+    fval        = open(fval_path, 'w')
     
     for i in list:  
         name = total_seg[i][:-4]+'\n'  
